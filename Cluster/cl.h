@@ -76,6 +76,7 @@ public:
 		Statistic stat{ 0, 0, 0, 0.0 };
 		srand(time(0));
 		//inside usage
+		
 		ui tact_ended_prog_num = 0,
 			ID_flow = 1,
 			free_proc_num = processes_num;
@@ -104,15 +105,21 @@ public:
 
 			//getting new programs & adding in queue
 			if (tsks) {
-				if (import_user_queue) {
+				tmp.clear();
+				for (auto t : *tsks) {
+					if (t.t_appear == T)
+						tmp.push_back(t);
+				}
+				/*if (import_user_queue) {
 					tmp = GetTasks(tsks);
+					*/
 					for (auto task : tmp) {
 						if (task.p_num > processes_num) { throw "Error: Task required too many processors. Buy some more processors"; }
 					}
 					AddTasksToQueue(tmp);
 					stat.program_num += tmp.size();
-					import_user_queue = false;
-				}
+					//import_user_queue = false;
+				//}
 			}
 			else {
 				tmp = GetTasks(k, T, ID_flow); 

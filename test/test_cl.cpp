@@ -103,4 +103,10 @@ TEST(CL, return_right_statistic_when_some_tasks_completed_no_running) {
 	EXPECT_TRUE(c.Simulation(0, t) == st);
 }
 
-
+TEST(CL, return_right_statistic_when_tasks_generate_at_different_time) {
+	CL c(5, 5, 80);
+	vector <Task> v{ {48784, 0, 1, 1},  { 0, 4, 3, 10 } };
+	vector <Task>* t = &v;
+	Statistic st{ 2, 1, 1, 0.16 };
+	EXPECT_TRUE(c.Simulation(0, t) == st);
+}

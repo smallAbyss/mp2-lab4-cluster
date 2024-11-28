@@ -7,20 +7,20 @@ int main() {
     bool fl = false;
     CL cluster;
     do {
-        cout << "please, enter number of processe in cluster: ";
+        cout << "please, enter number of processe in cluster (must be from 0 to 64): ";
         cin >> p;
-        cout << "please, enter maximum tact limit: ";
+        cout << "please, enter maximum tact limit (must be not less than 1): ";
         cin >> t;
-        cout << "please, enter the chance of generating a new task in cluster: ";
+        cout << "please, enter the chance of generating a new task in cluster(must be from 1 to 100): ";
         cin >> ch;
-        cout << "please, enter how many tasks will appear every tact: ";
+        cout << "please, enter how many tasks will appear every tact(must be not less than 1): ";
         cin >> k;
         fl = false;
         try {
             CL c(p, t, ch);
             cluster = c;
         }
-        catch (char* e) {
+        catch (const char* e) {
             cout << e << endl << "Please, try again\n\n";
             fl = true;
         }
@@ -29,4 +29,3 @@ int main() {
     printStatistic(cluster.Simulation(k));
    return 0;
 }
-
